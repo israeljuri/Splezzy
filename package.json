@@ -1,0 +1,24 @@
+{
+  "name": "splezzy",
+  "version": "1.0.0",
+  "description": "A children spelling bee web app",
+  "main": "App.js",
+  "devDependencies": {
+    "@babel/core": "^7.12.3",
+    "babel-loader": "^8.2.1",
+    "webpack": "^5.4.0",
+    "webpack-cli": "^4.2.0"
+  },
+  "scripts": {
+    "build": "webpack"
+  },
+  "keywords": [
+    "spelling",
+    "splezzy",
+    "spelling",
+    "spelling bee",
+    "bee"
+  ],
+  "author": "Israel Juri",
+  "license": "ISC"
+}

@@ -1,0 +1,20 @@
+$color-white: white;
+$color-black: black;
+$color-primary: #2d2dd6;
+$color-secondary: #00f7ff;
+
+$color-success: #1faa1f;
+$color-error: #ec4b4b;
+
+$bg-success: green;
+$bg-error: red;
+$bg-normal: #484877;
+
+:root {
+  --white: #{$color-white};
+  --black: #{$color-black};
+  --primary: #{$color-primary};
+  --secondary: #{$color-secondary};
+  --success: #{$color-success};
+  --error: #{$color-error};
+}

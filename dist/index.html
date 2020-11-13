@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dictation &mdash; Children dictation playground</title>
+    <link rel="stylesheet" href="css/main.css" />
+  </head>
+  <body>
+    <div class="app" id="app">
+      <!-- User Section -->
+      <section class="user">
+        <figure class="user__player">
+          <h4>player name</h4>
+        </figure>
+        <section class="user__score">
+          <h4>score: <b class="value">0</b></h4>
+        </section>
+        <section class="user__image">
+          <img src="images/girl.png" alt="player avatar" />
+          <p>you can hit the sound button to hear the word again</p>
+        </section>
+      </section>
+
+      <!-- Body Section -->
+      <section class="body">
+        <!-- navbar -->
+        <nav class="body__nav">
+          <div class="body__nav-stats">
+            <span class="correct">Correct: <b class="value">0</b></span>
+            <span class="incorrect">incorrect: <b class="value">0</b></span>
+          </div>
+        </nav>
+        <div class="body__sound">
+          <audio class="body__sound-correct">
+            <source src="sounds/correct.mp3" type="audio/mpeg" />
+          </audio>
+          <audio class="body__sound-incorrect">
+            <source src="sounds/incorrect.mp3" type="audio/mpeg" />
+          </audio>
+        </div>
+        <!-- form -->
+        <form action="#" class="body__form">
+          <div class="body__form-speak-wrapper">
+            <span class="body__form-speak">
+              <svg><use xlink:href="icon/sprit.svg#mic"></use></svg>
+            </span>
+          </div>
+          <div class="body__form-control">
+            <input type="text" class="body__form-input" />
+            <button type="submit" class="body__form-btn">
+              <svg><use xlink:href="icon/sprit.svg#checkmark"></use></svg>
+            </button>
+          </div>
+          <div class="body__form-msg"></div>
+        </form>
+      </section>
+
+      <!-- User Registration -->
+      <section class="register">
+        <form action="#" class="register__form">
+          <div class="register__form-control">
+            <span class="register__form-info">Enter your name?</span>
+            <input
+              type="text"
+              placeholder="eg. mary"
+              class="register__form-input"
+            />
+          </div>
+          <div
+            class="register__form-control register__form-control--gender boy"
+          >
+            <span>
+              <h4>Boy</h4>
+              <input
+                type="radio"
+                value="boy"
+                name="gender"
+                class="register__form-gender"
+              />
+            </span>
+            <span>
+              <h4>Girl</h4>
+              <input
+                type="radio"
+                checked
+                value="girl"
+                name="gender"
+                class="register__form-gender"
+              />
+            </span>
+          </div>
+          <div
+            class="register__form-control register__form-control--range girl"
+          >
+            <input
+              type="range"
+              value="5"
+              min="5"
+              max="10"
+              class="register__form-word-range"
+            />
+            <span class="register__form-info register__form-info--range"
+              >How many letter words: <b class="value">5</b></span
+            >
+          </div>
+          <button type="submit" class="register__form-btn">
+            Save
+            <svg><use xlink:href="icon/sprit.svg#checkmark"></use></svg>
+          </button>
+        </form>
+      </section>
+
+      <!-- Users -->
+      <section class="users">
+        <h4>Select your profile.</h4>
+        <div class="users-content"></div>
+        <div class="users__cta">
+          <button class="btn">New User.</button>
+        </div>
+      </section>
+    </div>
+    <script src="js/index.js"></script>
+  </body>
+</html>
