@@ -14,6 +14,8 @@ function DOM() {
   this.soundIncorrect = document.querySelector(".body__sound-incorrect");
 
   this.register = document.querySelector(".register");
+  this.registerCancelBtn = document.querySelector(".register__form-btn-cancel");
+  this.registerSaveBtn = document.querySelector(".register__form-btn-save");
   this.registerForm = document.querySelector(".register__form");
   this.registerFormNameInput = document.querySelector(".register__form-input");
   this.registerFormRangeInput = document.querySelector(
@@ -31,9 +33,11 @@ function DOM() {
   this.userScore = document.querySelector(".user__score .value");
   this.userImageContainer = document.querySelector(".user__image");
   this.userImage = this.userImageContainer.querySelector("img");
-
   this.profileSection = document.querySelector(".users");
   this.profileContainer = document.querySelector(".users-content");
+  this.newUserBtn = document.querySelector(".users__cta .btn");
+  this.settingsBtn = document.querySelector(".user__nav-setting");
+  this.refreshBtn = document.querySelector(".user__nav-refresh");
 }
 
 const dom = new DOM();

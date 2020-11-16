@@ -14,6 +14,13 @@ export default function UI() {
   this.openWidget = function (elem) {
     elem.classList.add("show");
   };
+  this.toggleSection = function (elem, btnArray) {
+    btnArray.forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        elem.classList.toggle("show");
+      });
+    });
+  };
   this.structureUserProfile = function (obj) {
     const figure = document.createElement("figure");
     figure.setAttribute("data-id", obj.id);
@@ -24,6 +31,9 @@ export default function UI() {
     <span class="users__avatar" style="background: url(${obj.url}) no-repeat center center/cover"></span>
     <figcaption class="users__name">${obj.name}</figcaption>`;
     return figure;
+  };
+  this.clearChildren = function (parent) {
+    parent.innerHTML = "";
   };
   this.appendToParent = function (parent, child) {
     parent.appendChild(child);

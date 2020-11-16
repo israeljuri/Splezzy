@@ -3,13 +3,13 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Dictation &mdash; Children dictation playground</title>
+    <title>Splezzy &mdash; Spelling bee</title>
     <link rel="stylesheet" href="css/main.css" />
   </head>
   <body>
     <div class="app" id="app">
       <!-- User Section -->
-      <section class="user">
+      <section class="user" data-id="">
         <figure class="user__player">
           <h4>player name</h4>
         </figure>
@@ -20,6 +20,14 @@
           <img src="images/girl.png" alt="player avatar" />
           <p>you can hit the sound button to hear the word again</p>
         </section>
+        <nav class="user__footer">
+          <span class="user__nav-setting">
+            <svg><use xlink:href="icon/sprit.svg#cog"></use></svg>
+          </span>
+          <span class="user__nav-refresh">
+            <svg><use xlink:href="icon/sprit.svg#spinner11"></use></svg>
+          </span>
+        </nav>
       </section>
 
       <!-- Body Section -->
@@ -31,14 +39,6 @@
             <span class="incorrect">incorrect: <b class="value">0</b></span>
           </div>
         </nav>
-        <div class="body__sound">
-          <audio class="body__sound-correct">
-            <source src="sounds/correct.mp3" type="audio/mpeg" />
-          </audio>
-          <audio class="body__sound-incorrect">
-            <source src="sounds/incorrect.mp3" type="audio/mpeg" />
-          </audio>
-        </div>
         <!-- form -->
         <form action="#" class="body__form">
           <div class="body__form-speak-wrapper">
@@ -60,10 +60,9 @@
       <section class="register">
         <form action="#" class="register__form">
           <div class="register__form-control">
-            <span class="register__form-info">Enter your name?</span>
             <input
               type="text"
-              placeholder="eg. mary"
+              placeholder="Whats your name?"
               class="register__form-input"
             />
           </div>
@@ -74,6 +73,7 @@
               <h4>Boy</h4>
               <input
                 type="radio"
+                checked
                 value="boy"
                 name="gender"
                 class="register__form-gender"
@@ -83,7 +83,6 @@
               <h4>Girl</h4>
               <input
                 type="radio"
-                checked
                 value="girl"
                 name="gender"
                 class="register__form-gender"
@@ -104,19 +103,30 @@
               >How many letter words: <b class="value">5</b></span
             >
           </div>
-          <button type="submit" class="register__form-btn">
-            Save
-            <svg><use xlink:href="icon/sprit.svg#checkmark"></use></svg>
-          </button>
+          <div class="register__form-cta">
+            <button
+              type="submit"
+              class="register__form-btn register__form-btn-save"
+            >
+              Save
+            </button>
+            <button
+              type="button"
+              class="register__form-btn register__form-btn-cancel"
+            >
+              Cancel
+            </button>
+          </div>
         </form>
       </section>
 
       <!-- Users -->
       <section class="users">
         <h4>Select your profile.</h4>
+        <p><b>Can't find your name?</b> you can create a new profile below.</p>
         <div class="users-content"></div>
         <div class="users__cta">
-          <button class="btn">New User.</button>
+          <button class="btn">New user.</button>
         </div>
       </section>
     </div>

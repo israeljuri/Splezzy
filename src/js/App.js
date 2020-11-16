@@ -106,21 +106,41 @@ function Control() {
   this.selectProfile = function (user) {
     ui.sync(dom.userName, user.name);
     ui.sync(dom.userScore, user.score);
-    if (user.gender === "boy") {
+    dom.user.setAttribute('data-id', user.id);
+     if (user.gender === "boy") {
       dom.userImage.setAttribute("src", "images/boy.png");
       dom.userImage.style.width = "65%";
     } else dom.userImage.setAttribute("src", "images/girl.png");
   };
+
+  this.toggleFullScreen = function () {
+    if (!document.fullscreenElement) {
+      document.documentElement.requestFullscreen();
+    } 
+  };
+
+  this.editUser = function(){
+    const id = Number(dom.user.getAttribute('data-id'));
+    const users = db.getUser();
+    users.forEach(function(user){
+      if(id === user.id)  db.editUser(user)
+    })
+  }
 }
 
 // Controller Methods
 ctr.runOnStart(() => {
+  ui.openWidget(dom.profileSection);
   ctr.syncUI();
   ctr.loadProfiles();
-  ui.openWidget(dom.profileSection);
   if (db.getUser().length === 0) ui.openWidget(dom.register);
 });
-
+ctr.listenTo(dom.refreshBtn, 'click', function(){
+  location.reload();
+})
+ctr.listenTo(document, 'click', function(){
+  ctr.toggleFullScreen();
+})
 ctr.listenTo(dom.spellForm, "submit", function (e) {
   e.preventDefault();
   if (!dom.spellInput.value)
@@ -135,27 +155,25 @@ ctr.listenTo(dom.spellForm, "submit", function (e) {
     speak(value);
   }, 3500);
 });
-
 ctr.listenTo(dom.registerForm, "submit", function (e) {
   e.preventDefault();
+  if(dom.registerSaveBtn.getAttribute('data-state')) return ctr.editUser();
   ui.saveUser((data) => db.saveUser.call(db, data));
+  
 });
-
 ctr.listenTo(dom.speakButton, "click", function () {
   speak(word);
 });
-
 ctr.listenTo(dom.registerForm, "submit", function (e) {
   e.preventDefault();
   ctr.saveUser();
+  ui.clearChildren(dom.profileContainer);
   ctr.loadProfiles();
   ui.closeWidget(dom.register);
 });
-
 ctr.listenTo(dom.registerFormRangeInput, "change", function () {
   ui.sync(dom.registerFormRangeInfo, dom.registerFormRangeInput.value);
 });
-
 ctr.listenTo(dom.profileContainer, "click", function (e) {
   if (!e.target.getAttribute("type") === "checkbox") return false;
   db.getUser().forEach(function (user) {
@@ -165,14 +183,26 @@ ctr.listenTo(dom.profileContainer, "click", function (e) {
     }
   });
 });
+ctr.listenTo(dom.settingsBtn, 'click', function(){
+  const users = db.getUser();
+    users.forEach(function(user){
+      dom.registerFormNameInput.value = user.name;
+      dom.registerFormRangeInput.value = user.letterPerWord;
+      dom.registerSaveBtn.setAttribute('data-state', 'edit');
+      dom.registerFormGenderInputs.forEach(function(input){
+        if(input.value === user.gender) input.checked;
+      })
+  })
+})
+ui.toggleSection(dom.register, [dom.registerCancelBtn, dom.newUserBtn, dom.settingsBtn]);
 
 function iterateWords(words) {
   let nextIndex = 0;
   return {
-    next: function () {
-      return nextIndex < words.length
-        ? { value: words[nextIndex++], done: false }
-        : { done: true };
+    next: () => {
+      if(nextIndex < words.length) return {value: words[nextIndex++], done: false};
+      else {return {value: undefined, done: true}}
     },
   };
 }
+s

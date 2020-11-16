@@ -19,7 +19,17 @@ export default function DB() {
     return console.log(`${user.name} saved! :)`);
   };
 
-  this.editUser = function (user) {};
+  this.editUser = function (userObj) {
+    const usersList = db.getUser();
+    usersList.forEach(function(user, index){
+        if(userObj.id === user.id) {
+          usersList.splice(index, 1);
+          usersList.push(userObj);
+        }
+    })
+    ls.setItem(storageKey, JSON.stringify(usersList))
+    return console.log(`${user.name} edited! :)`);
+  };
 
   this.deleteUser = function (user) {};
 }
